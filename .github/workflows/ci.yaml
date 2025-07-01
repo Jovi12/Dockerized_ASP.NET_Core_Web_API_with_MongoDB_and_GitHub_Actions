@@ -1,0 +1,22 @@
+name: Build and Test .NET API
+
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+        branches: [ main ]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        
+        steps:
+        - name: checkout source
+          uses: actions/checkout@v4
+
+        - name: Set Up .NET SDK
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: '8.x'
+        - name: Build
+          run: dotnet build --no-restore
