@@ -21,6 +21,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+//removed for docker 
 
 app.UseSwagger();
 app.UseSwaggerUI();
