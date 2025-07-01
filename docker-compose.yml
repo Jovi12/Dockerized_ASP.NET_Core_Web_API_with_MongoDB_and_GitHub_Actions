@@ -1,0 +1,23 @@
+services:
+  crudoperationwithmongodb:
+    image: ${DOCKER_REGISTRY-}crudoperationwithmongodb
+    build:
+      context: .
+      dockerfile: CrudOperationWithMongodb/Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - ConnectionStrings__DefaultConnection=mongodb://host.docker.internal:27017
+      - MongoDB__DatabaseName=crudoperation
+      - MongoDB__CollectionName=UserDetails
+  
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+ 
